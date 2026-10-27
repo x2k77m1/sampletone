@@ -1,0 +1,22 @@
+{
+  "id": "sampletone", "version": "1.0a", "ele3_version": "1.0a",
+  "license": "GPL-2.0-or-later",
+  "title": "SampleTone (Digitone machine)", "category": "Sound",
+  "author": "x2k",
+  "description": "SampleTone: a sample-playback machine for the Digitone mk1 (OS 1.44). One mono one-shot per voice with start/end (start above end plays backwards), forward loop, note pitch tracking and a tune offset, through a bit-depth/sample-rate crusher and then the Digitone's own filter, mixer, effects and AMP envelope. The Digitone has no sample engine and a machine mod cannot load a file at run time, so the samples are compiled in: bake.py converts your WAV/AIFF files into the table this machine plays. Needs the machines companion and core-dn1 4.0 for its 1.25 MB mod area.",
+  "device": "digitone-mk1", "os": "1.44",
+  "sources": ["engine.c", "overlay.c", "samples.c"],
+  "cflags": ["-DKEYVAR_AT=0x41368ce4"],
+  "subscribe": [
+    {"event": "ev_tick", "fn": "st_tick",        "order": 60},
+    {"event": "ev_draw", "fn": "st_draw",        "order": 60},
+    {"event": "ev_key",  "fn": "st_key_handler", "order": 60},
+    {"event": "ev_enc",  "fn": "st_enc_handler", "order": 60}
+  ],
+  "contribute": [
+    {"to": "dn_machines", "order": 50, "data": "00000000",
+     "relocs": [[0, "abs32", "sym:st_machine", 0]]}
+  ],
+  "resources": {"names": ["dnmachine:81"], "core": "4.0"},
+  "requires": ["core", "machines"]
+}

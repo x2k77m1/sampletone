@@ -1,0 +1,28 @@
+# Build output
+out/
+*.elemod
+*.elf
+*.o
+
+# Stock firmware and anything derived from it: never commit (Elektron copyright)
+*.syx
+*.bin
+*.work/
+
+# Your samples: usually somebody else's copyright. The baked table in
+# samples.c/samples.h is what a build needs, and that is committed.
+samples/*
+!samples/README.md
+
+# Elektron's stock OS image is a build input you supply yourself
+firmware/*
+!firmware/README.md
+
+# The elekloader checkout this builds against (its own repository)
+elekloader/
+
+# Editor and OS noise
+.DS_Store
+**/.DS_Store
+__pycache__/
+*.log
